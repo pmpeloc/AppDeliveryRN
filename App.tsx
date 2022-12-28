@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
@@ -7,6 +7,10 @@ export default function App() {
         style={styles.imageBackground}
         source={require('./assets/chef.jpg')}
       />
+      <View style={styles.logoContainer}>
+        <Image style={styles.logoImage} source={require('./assets/logo.png')} />
+        <Text style={styles.logoText}>FOOD APP</Text>
+      </View>
       <View style={styles.form}></View>
     </View>
   );
@@ -31,5 +35,21 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
+  },
+  logoContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: '15%',
+  },
+  logoImage: {
+    width: 100,
+    height: 100,
+  },
+  logoText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 20,
+    marginTop: 10,
+    fontWeight: 'bold',
   },
 });
