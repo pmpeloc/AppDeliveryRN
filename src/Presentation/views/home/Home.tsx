@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -6,28 +6,30 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
-import { RootStackParamList } from '../../../App';
+import { RootStackParamList } from '../../../../App';
+import useViewModel from './ViewModel';
 
 export const HomeScreen = () => {
+  const { email, password, onChange } = useViewModel();
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <View style={styles.container}>
       <Image
         style={styles.imageBackground}
-        source={require('../../../assets/chef.jpg')}
+        source={require('../../../../assets/chef.jpg')}
       />
       <View style={styles.logoContainer}>
         <Image
           style={styles.logoImage}
-          source={require('../../../assets/logo.png')}
+          source={require('../../../../assets/logo.png')}
         />
         <Text style={styles.logoText}>FOOD APP</Text>
       </View>
@@ -36,30 +38,34 @@ export const HomeScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/email.png')}
+            source={require('../../../../assets/email.png')}
           />
           <TextInput
             style={styles.formTextInput}
             placeholder='Correo electrónico'
             keyboardType='email-address'
+            value={email}
+            onChangeText={(v) => onChange('email', v)}
           />
         </View>
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/password.png')}
+            source={require('../../../../assets/password.png')}
           />
           <TextInput
             style={styles.formTextInput}
             placeholder='Contraseña'
             keyboardType='default'
+            value={password}
+            onChangeText={(v) => onChange('password', v)}
             secureTextEntry
           />
         </View>
         <View style={{ marginTop: 30 }}>
           <RoundedButton
-            text='ENTRAR'
-            onPress={() => ToastAndroid.show('Hello', ToastAndroid.SHORT)}
+            text='LOGIN'
+            onPress={() => console.log({ email, password })}
           />
         </View>
         <View style={styles.formRegister}>

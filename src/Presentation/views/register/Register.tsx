@@ -16,12 +16,12 @@ export const RegisterScreen = () => {
     <View style={styles.container}>
       <Image
         style={styles.imageBackground}
-        source={require('../../../assets/chef.jpg')}
+        source={require('../../../../assets/chef.jpg')}
       />
       <View style={styles.logoContainer}>
         <Image
           style={styles.logoImage}
-          source={require('../../../assets/user_image.png')}
+          source={require('../../../../assets/user_image.png')}
         />
         <Text style={styles.logoText}>SELECCIONA UNA IMAGEN</Text>
       </View>
@@ -30,7 +30,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/user.png')}
+            source={require('../../../../assets/user.png')}
           />
           <TextInput
             style={styles.formTextInput}
@@ -41,7 +41,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/my_user.png')}
+            source={require('../../../../assets/my_user.png')}
           />
           <TextInput
             style={styles.formTextInput}
@@ -52,7 +52,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/email.png')}
+            source={require('../../../../assets/email.png')}
           />
           <TextInput
             style={styles.formTextInput}
@@ -63,7 +63,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/phone.png')}
+            source={require('../../../../assets/phone.png')}
           />
           <TextInput
             style={styles.formTextInput}
@@ -74,7 +74,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/password.png')}
+            source={require('../../../../assets/password.png')}
           />
           <TextInput
             style={styles.formTextInput}
@@ -86,7 +86,7 @@ export const RegisterScreen = () => {
         <View style={styles.formInput}>
           <Image
             style={styles.formIcon}
-            source={require('../../../assets/confirm_password.png')}
+            source={require('../../../../assets/confirm_password.png')}
           />
           <TextInput
             style={styles.formTextInput}
