@@ -17,7 +17,11 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='HomeScreen' component={HomeScreen} />
-        <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
+        <Stack.Screen
+          name='RegisterScreen'
+          component={RegisterScreen}
+          options={{ headerShown: true, title: 'Nuevo usuario' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
