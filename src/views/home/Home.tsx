@@ -1,17 +1,23 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Image,
   StyleSheet,
   Text,
   TextInput,
   ToastAndroid,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
 import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
+import { RootStackParamList } from '../../../App';
 
 export const HomeScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <Image
@@ -58,7 +64,10 @@ export const HomeScreen = () => {
         </View>
         <View style={styles.formRegister}>
           <Text>No tienes cuenta?</Text>
-          <Text style={styles.formRegisterText}>Registrate</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RegisterScreen')}>
+            <Text style={styles.formRegisterText}>Registrate</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
