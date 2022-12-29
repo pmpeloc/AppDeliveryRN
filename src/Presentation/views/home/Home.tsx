@@ -14,6 +14,7 @@ import { RoundedButton } from '../../components/RoundedButton';
 import { MyColors } from '../../theme/AppTheme';
 import { RootStackParamList } from '../../../../App';
 import useViewModel from './ViewModel';
+import { CustomTextInput } from '../../components/CustomTextInput';
 
 export const HomeScreen = () => {
   const { email, password, onChange } = useViewModel();
@@ -35,33 +36,23 @@ export const HomeScreen = () => {
       </View>
       <View style={styles.form}>
         <Text style={styles.formText}>INGRESAR</Text>
-        <View style={styles.formInput}>
-          <Image
-            style={styles.formIcon}
-            source={require('../../../../assets/email.png')}
-          />
-          <TextInput
-            style={styles.formTextInput}
-            placeholder='Correo electrónico'
-            keyboardType='email-address'
-            value={email}
-            onChangeText={(v) => onChange('email', v)}
-          />
-        </View>
-        <View style={styles.formInput}>
-          <Image
-            style={styles.formIcon}
-            source={require('../../../../assets/password.png')}
-          />
-          <TextInput
-            style={styles.formTextInput}
-            placeholder='Contraseña'
-            keyboardType='default'
-            value={password}
-            onChangeText={(v) => onChange('password', v)}
-            secureTextEntry
-          />
-        </View>
+        <CustomTextInput
+          image={require('../../../../assets/email.png')}
+          placeholder='Correo electrónico'
+          value={email}
+          keyboardType='email-address'
+          property='email'
+          onChangeText={onChange}
+        />
+        <CustomTextInput
+          image={require('../../../../assets/password.png')}
+          placeholder='Contraseña'
+          value={password}
+          keyboardType='default'
+          property='password'
+          onChangeText={onChange}
+          secureTextEntry={true}
+        />
         <View style={{ marginTop: 30 }}>
           <RoundedButton
             text='LOGIN'
@@ -101,24 +92,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     padding: 30,
   },
-  formInput: {
-    flexDirection: 'row',
-    marginTop: 30,
-  },
-  formIcon: {
-    width: 25,
-    height: 25,
-    marginTop: 5,
-  },
   formText: {
     fontWeight: 'bold',
     fontSize: 16,
-  },
-  formTextInput: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: '#aaa',
-    marginLeft: 15,
   },
   formRegister: {
     flexDirection: 'row',
