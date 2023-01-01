@@ -6,15 +6,22 @@ import {
   ScrollView,
   ToastAndroid,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import { CustomTextInput } from '../../components/CustomTextInput';
+import { StackScreenProps } from '@react-navigation/stack';
 
 import { RoundedButton } from '../../components/RoundedButton';
 import useViewModel from './ViewModel';
 import styles from './Styles';
 import { ModalPickImage } from '../../components/ModalPickImage';
+import { RootStackParamList } from '../../../../App';
+import { MyColors } from '../../theme/AppTheme';
 
-export const RegisterScreen = () => {
+interface Props
+  extends StackScreenProps<RootStackParamList, 'RegisterScreen'> {}
+
+export const RegisterScreen = ({ navigation }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const {
@@ -25,6 +32,8 @@ export const RegisterScreen = () => {
     password,
     confirmPassword,
     image,
+    user,
+    isLoading,
     errorMessage,
     onChange,
     register,
@@ -37,6 +46,12 @@ export const RegisterScreen = () => {
       ToastAndroid.show(errorMessage, ToastAndroid.LONG);
     }
   }, [errorMessage]);
+
+  useEffect(() => {
+    if (user?.id !== null && user?.id !== undefined) {
+      navigation.replace('ProfileInfoScreen');
+    }
+  }, [user]);
 
   return (
     <View style={styles.container}>
@@ -121,6 +136,13 @@ export const RegisterScreen = () => {
         modalUseState={modalVisible}
         setModalUseState={setModalVisible}
       />
+      {isLoading && (
+        <ActivityIndicator
+          style={styles.loading}
+          size='large'
+          color={MyColors.primary}
+        />
+      )}
     </View>
   );
 };
