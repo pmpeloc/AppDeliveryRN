@@ -1,12 +1,22 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, ScrollView, ToastAndroid } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  ToastAndroid,
+  TouchableOpacity,
+} from 'react-native';
 import { CustomTextInput } from '../../components/CustomTextInput';
 
 import { RoundedButton } from '../../components/RoundedButton';
 import useViewModel from './ViewModel';
 import styles from './Styles';
+import { ModalPickImage } from '../../components/ModalPickImage';
 
 export const RegisterScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const {
     name,
     lastname,
@@ -14,9 +24,12 @@ export const RegisterScreen = () => {
     phone,
     password,
     confirmPassword,
+    image,
     errorMessage,
     onChange,
     register,
+    pickImage,
+    takePhoto,
   } = useViewModel();
 
   useEffect(() => {
@@ -32,10 +45,16 @@ export const RegisterScreen = () => {
         source={require('../../../../assets/chef.jpg')}
       />
       <View style={styles.logoContainer}>
-        <Image
-          style={styles.logoImage}
-          source={require('../../../../assets/user_image.png')}
-        />
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          {image === '' ? (
+            <Image
+              style={styles.logoImage}
+              source={require('../../../../assets/user_image.png')}
+            />
+          ) : (
+            <Image style={styles.logoImage} source={{ uri: image }} />
+          )}
+        </TouchableOpacity>
         <Text style={styles.logoText}>SELECCIONA UNA IMAGEN</Text>
       </View>
       <View style={styles.form}>
@@ -96,6 +115,12 @@ export const RegisterScreen = () => {
           </View>
         </ScrollView>
       </View>
+      <ModalPickImage
+        openGallery={pickImage}
+        openCamera={takePhoto}
+        modalUseState={modalVisible}
+        setModalUseState={setModalVisible}
+      />
     </View>
   );
 };
